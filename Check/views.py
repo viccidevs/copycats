@@ -47,20 +47,21 @@ from popen2 import popen3;
 
 delete_files = 0;
 
-def compile(file_name, dire):
-    s_filename = dire + file_name.replace('.c','.s')
-    args = ['gcc', '-S','-o', s_filename, '-w', dire+file_name ]
-    print args
-    r,w,e = popen3(' '.join(args))
-    s=e.read()
-    if not s.lower().find('error') == -1:
-    	print 'ininini'
-    	print s
-        return "ERROR"
-    return s_filename;
+# def compile(file_name, dire):
+#     s_filename = dire + file_name.replace('.c','.s','.txt')
+#     args = ['gcc', '-S','-o', s_filename, '-w', dire+file_name ]
+#     print args
+#     r,w,e = popen3(' '.join(args))
+#     s=e.read()
+#     if not s.lower().find('error') == -1:
+#     	print 'ininini'
+#     	print s
+#         return "ERROR"
+#     return s_filename;
 
 def open_and_process(file_name, dire):
-    filename = compile(file_name, dire)
+    # filename = compile(file_name, dire)
+    filename = dire + file_name
     if filename=="ERROR":
     	print 'inopenndproc'
         return "ERROR"
@@ -155,8 +156,8 @@ def process_it(file1, file2, dire):
     if delete_files == 1:
         popen3('rm '+dire+file1)
         popen3('rm '+dire+file2)
-        s_file1 = file1.replace('.c','.s')
-        s_file2 = file2.replace('.c','.s')
+        s_file1 = file1.replace('.c','.s','txt')
+        s_file2 = file2.replace('.c','.s','.txt')
         popen3('rm '+dire+s_file1)
         popen3('rm '+dire+s_file2)
     return [assembly, ccode]

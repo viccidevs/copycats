@@ -32,13 +32,13 @@
 						<div class="12u">
 
 							<!-- Logo -->
-								<h1><a href="#" id="logo">Halcyonic</a></h1>
+								<h1><a href="#" id="logo">V Plagiarism Checker</a></h1>
 							
 							<!-- Nav -->
 								<nav id="nav">
 									<a href="../">Homepage</a>
 									<a href="../aboutus">About Us</a>
-									<a href "../comparecode">Compare Code </a>
+									<a href "../comparecode">Compare Documents </a>
 								</nav>
 
 						</div>
@@ -83,7 +83,7 @@
 												<div class="row">
 													<div class="3u"></div>
 													<div class="6u important(collapse)">
-														<center><input type="checkbox" name="assembly" ng-model="needAssembly">Do you need Assembly Comparison</center>
+														<!-- <center><input type="checkbox" name="assembly" ng-model="needAssembly">Do you need Assembly Comparison</center> -->
 													</div>
 												</div>
 												<div class="row">
@@ -119,7 +119,7 @@
 					document.getElementById('err').style.display="block";
 					return false;
 				}
-				if(file1.split('.').pop()!="c" || file2.split('.').pop()!="c"){
+				if(file1.split('.').pop()!="txt" || file2.split('.').pop()!="txt"){
 					document.getElementById('err2').style.display="block";
 					return false;
 				}
