@@ -1,3 +1,5 @@
+from difflib import SequenceMatcher
+
 def difference(file1,file2):
     data1 = open(file1).read()
     data2 = open(file2).read()

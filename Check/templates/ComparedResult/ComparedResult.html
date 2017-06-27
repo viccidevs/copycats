@@ -17,7 +17,7 @@ Also get the percentage of match for everything... Got to check how to get this!
 
 <html>
 	<head>
-		<title>Two Column 1 - Halcyonic by HTML5 UP</title>
+		<title>Results</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -52,7 +52,7 @@ Also get the percentage of match for everything... Got to check how to get this!
 						<div class="12u">
 
 							<!-- Logo -->
-								<h1><a href="#" id="logo">V Plagiarism Checker</a></h1>
+								<h1><a href="/" id="logo">V Plagiarism Checker</a></h1>
 							
 							<!-- Nav -->
 								<nav id="nav">
@@ -66,14 +66,14 @@ Also get the percentage of match for everything... Got to check how to get this!
 				</header>
 			</div>
 			{% autoescape off %}
-			<!-- <div id="content-wrapper">
+			<div id="content-wrapper">
 				<div id="content">
 					<div class="container">
 						<div class="row">
-							<div class="alert alert-warning" role="alert">
-								The result would be <span class="label label-danger">Pakkis</span> Semma copy
+							<div class="alert alert-info" role="alert">
+								Level of Similarity: <span class="label label-success"><font color="black">{{ ratio }}%</font></span>
 
-							</div> -->
+							</div>
 
 						</div>
 					</div>
@@ -90,7 +90,7 @@ Also get the percentage of match for everything... Got to check how to get this!
 						<hr style="height:1px;border:none;color:#DEADDA;background-color:#DEADDA;" /> -->
 					</div>
 				</div>
-				<p> The similarity between both files is {{ ddiference | join:"<br>" }}%</p>
+				<!-- <p> The similarity between both files is {{ ratio }}%</p> -->
 				<div class="container codeview">
 					<div class="row">
 						<div class="6u">

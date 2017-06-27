@@ -1,0 +1,42 @@
+PROJECT PROPOSAL 
+Principal Investigator
+Name: Odey Merrygold Iye
+Matric Number: 14/52HA157
+Department: Computer Science
+Email: mgodey1@gmail.com
+
+Supervisor
+Dr. A.R. Ajiboye
+
+Project Topic
+IMPLEMENTATION OF AN INTELLECT BASED ADAPTIVE LEARNING SYSTEM
+
+Background of Study
+	Adaptive learning is an educational method which uses computers as interactive teaching devices, and to orchestrate the allocation of human and mediated resources according to the unique needs of each learner. Computers adapt the presentation of educational material according to students' learning needs, as indicated by their responses to questions, tasks and experiences. The technology encompasses aspects derived from various fields of study including computer science, education, psychology, and brain science.
+	Adaptive learning makes content dynamic and interactive, placing the student at the centre of his or her individual learning experience. 
+Statement of The Problem
+Due to the different intellectual capabilities and entry knowledge of students, adoption of a "one-size-fits-all” method for presenting course modules to different students is grossly inadequate. The Information Technology has provided a platform to be leveraged to overcome the challenge, this is to be demonstrated in this project by implementing an adaptive learning environment.
+Aim and Objectives
+The aim of this project is to implement an intellect based adaptive web educational system.
+The objectives are:
+i.	To prepare a sample modularized course for the system
+ii.	 To implement an open source Adaptive knowledge based system.
+iii.	To evaluate the effect of the adaptive system on learner’s speed of courseware completion and on learning.
+Methodology
+i.	A part of the CSC427 course (Computer Networking) would be modularized and adopted.
+ii.	The functionality of an Adaptive Learning Environment and an authoring tool would be explored and implemented and the course modules would be designed using the authoring tool and presented using the Adaptive Learning Environment. 
+iv.	The effectiveness of the system would be evaluated by administering usability questionnaires.
+v.	A learning management system would be improved upon for efficient use.
+Literature Review
+Different adaptive learning engines have been used to build adaptive learning systems, an example of this engine is the GRAPPLE Adaptive Learning Engine(GALE), Online Course Tool for Adaptive Learning(OCTAL)
+Some of this systems are ‘Dreambox Learning Platform’, ‘edX Learning Platform’.
+Significance
+This project has various significances to both the lecturer and the student, one significance of the system to the student is that an adaptive system makes learning comfortable for students since the pace of the course is determined by the intellectual ability of the students, it also improves the success chances of students.
+Scope and limitations of study
+The system would be limited with implementing adaptivity on a single course, CSC427 (Computer Networking) and would be used by 400 level students of the Department of Computer Science. This is to ensure capturing and analysis of usability results.
+
+References
+https://en.wikipedia.org/wiki/Adaptive_learning
+https://www.knewton.com/resources/blog/adaptive-learning/what-is-adaptive-learning/
+
+
