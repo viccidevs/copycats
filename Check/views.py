@@ -8,6 +8,9 @@ from PlagiarismChecker import settings
 
 from difflib import SequenceMatcher
 
+from difflib import HtmlDiff
+
+
 delete_files = 1
 
 def index(request):
@@ -16,6 +19,9 @@ def index(request):
         print request
         print "="*1000
         afile = request.FILES['file1']
+        #Check if file is PDF and Convert to text using method defined below
+        # if afile[-3:]=='pdf':
+        #     afile = convert_pdf_to_txt(afile)
         print afile.name,afile.read()
         instance = Tuple(file1 = request.FILES['file1'], file2 = request.FILES['file2'])
         instance.save();
@@ -23,17 +29,26 @@ def index(request):
         file1 = str(instance.file1)[2:]
         file2 = str(instance.file2)[2:]
         dire = str(settings.MEDIA_ROOT)
+        #Used to truncate strings
         ccod1 = open(dire+file1).read().split('\n')
+        if len(ccod1)>=100:
+            ccod1 = ccod1[:100]
         ccod2 = open(dire+file2).read().split('\n')
+        if len(ccod2)>=100:
+            ccod2 = ccod2[:100]
         datastuff = process_it(file1, file2, dire)
         # ddifference = difference(file1, file2, dire)
-        data1 = open(dire+file1).read()
-        data2 = open(dire+file2).read()
-        fileRatio= SequenceMatcher(None,ccod1,ccod2).ratio() * 100
+        # data1 = open(dire+file1).read()
+        # data2 = open(dire+file2).read()
+        sMatcher = SequenceMatcher(None,ccod1,ccod2)
+        fileRatio= sMatcher.ratio() * 100
+        matchingBlocks = sMatcher.get_matching_blocks()
+        HtmlDiff().__init__()
+        differenze = HtmlDiff().make_file(ccod1,ccod2)
         ccod1.insert(0,'') 
         ccod2.insert(0,'')
         print datastuff[0][2]
-        return render(request, 'ComparedResult\\ComparedResult.html', {'ratio' : fileRatio,'code1' : ccod1, 'code2' :ccod2, 'ccode1': ["",datastuff[1][1]], 'ccode2':["",datastuff[1][2]], 'assembly1': ["",datastuff[0][1]], 'assembly2': ["",datastuff[0][2]]})
+        return render(request, 'ComparedResult\\ComparedResult.html', {'diff' : differenze, 'mblocks' : matchingBlocks, 'ratio' : fileRatio,'code1' : ccod1, 'code2' :ccod2, 'ccode1': ["",datastuff[1][1]], 'ccode2':["",datastuff[1][2]], 'assembly1': ["",datastuff[0][1]], 'assembly2': ["",datastuff[0][2]]})
     return render(request, 'ComparedResult\\ComparedResult.html', {'ccode1':["",'''<div><mark>.def __main; .scl 2; .type 32; .endef</mark><br>.LC0:<br>.ascii "Hello world\\0"<br>.text<br>.globl main<br>.def main; .scl 2; .type 32; .endef<br>.seh_proc main<br>main:<br>pushq %rbp<br>.seh_pushreg %rbp<br>movq %rsp, %rbp<br>.seh_setframe %rbp, 0<br>subq $32, %rsp<br>.seh_stackalloc 32<br>.seh_endprologue<br>call __main<br>leaq .LC0(%rip), %rcx<br>call puts<br>movl $0, %eax<br>addq $32, %rsp<br><mark>popq %rbp</mark><br><mark>ret</mark><br><mark>.seh_endproc</mark><br><mark>.def puts; .scl 2; .type 32; .endef</mark><br></div> ''']})
 
 
@@ -237,3 +252,31 @@ def get_html_markup(a,b):
 #     diffPercentage = fileRatio*100
 #     return diffPercentage
 
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfpage import PDFPage
+from cStringIO import StringIO
+
+def convert_pdf_to_txt(path):
+    rsrcmgr = PDFResourceManager()
+    retstr = StringIO()
+    codec = 'utf-8'
+    laparams = LAParams()
+    device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
+    fp = file(path, 'rb')
+    interpreter = PDFPageInterpreter(rsrcmgr, device)
+    password = ""
+    maxpages = 0
+    caching = True
+    pagenos=set()
+
+    for page in PDFPage.get_pages(fp, pagenos, maxpages=maxpages, password=password,caching=caching, check_extractable=True):
+        interpreter.process_page(page)
+
+    text = retstr.getvalue()
+
+    fp.close()
+    device.close()
+    retstr.close()
+    return text
